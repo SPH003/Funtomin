@@ -10,13 +10,9 @@ Public Class Start
         Me.BackColor = Color.FromArgb(212, 224, 155)
 
         Fontxt()
-
         Theme()
         Sizing()
         Locations()
-
-        
-        
 
     End Sub
 
@@ -42,37 +38,28 @@ Public Class Start
         RadioButton2.BackColor = Color.FromArgb(203, 223, 189)
         RadioButton3.BackColor = Color.FromArgb(203, 223, 189)
         PictureBox1.BackColor = Color.FromArgb(203, 223, 189)
-
-
-
         Label4.BackColor = Color.FromArgb(241, 156, 121)
         Label1.BackColor = Color.FromArgb(241, 156, 121)
         Button1.BackColor = Color.FromArgb(241, 156, 121)
         Button2.BackColor = Color.FromArgb(241, 156, 121)
         PictureBox2.BackColor = Color.FromArgb(241, 156, 121)
-
-        Button1.FlatAppearance.BorderColor = Color.FromArgb(190, 223, 189)
-        Button2.FlatAppearance.BorderColor = Color.FromArgb(190, 223, 189)
-
-        Button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(197, 211, 186)
-        Button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(197, 211, 186)
-
         Label5.BackColor = Color.FromArgb(183, 191, 121)
         PictureBox3.BackColor = Color.FromArgb(183, 191, 121)
         Label2.BackColor = Color.FromArgb(183, 191, 121)
         Button3.BackColor = Color.FromArgb(183, 191, 121)
         Button4.BackColor = Color.FromArgb(183, 191, 121)
+        Button5.BackColor = Color.DarkOliveGreen
+        Button6.BackColor = Color.DarkOliveGreen
 
+        Button1.FlatAppearance.BorderColor = Color.FromArgb(190, 223, 189)
+        Button2.FlatAppearance.BorderColor = Color.FromArgb(190, 223, 189)
         Button3.FlatAppearance.BorderColor = Color.FromArgb(183, 191, 121)
         Button4.FlatAppearance.BorderColor = Color.FromArgb(183, 191, 121)
 
+        Button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(197, 211, 186)
+        Button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(197, 211, 186)
         Button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 223, 165)
         Button4.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 223, 165)
-
-
-
-        Button5.BackColor = Color.DarkOliveGreen
-        Button6.BackColor = Color.DarkOliveGreen
 
     End Sub
 
@@ -103,7 +90,6 @@ Public Class Start
         Button3.Height = PictureBox3.ClientSize.Height / 2
         Button4.Width = PictureBox3.ClientSize.Width / 2
         Button4.Height = PictureBox3.ClientSize.Height / 2
-
 
     End Sub
 
@@ -143,8 +129,6 @@ Public Class Start
         HomePage.Show()
     End Sub
 
-    
-
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         If RadioButton1.Checked = True Then
 
@@ -173,14 +157,10 @@ Public Class Start
             Me.Close()
             disposer()
             Subjects.Show()
-
         Else
             MsgBox("لطفا شرایط بازی را انتخاب نمایید", MsgBoxStyle.OkOnly + MsgBoxStyle.Critical, "عدم تکمیل")
         End If
     End Sub
-
-   
-    
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Label1.Text = Label1.Text + 1
@@ -208,13 +188,13 @@ Public Class Start
         End If
     End Sub
 
-
-  
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged, RadioButton3.Click, RadioButton2.Click
         Button5.Enabled = True
     End Sub
+
     Public Sub disposer()
         pfc.Dispose()
 
     End Sub
+
 End Class

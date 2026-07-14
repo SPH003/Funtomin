@@ -2,89 +2,146 @@
 
 ## About Funtomin
 
-**Funtomin** is an educational pantomime game created to demonstrate that developing software and games is achievable when we focus on learning, creativity, and taking action instead of waiting for perfection.
+**Funtomin** is an educational pantomime game designed to demonstrate that creating software applications and games is achievable when we start experimenting, thinking creatively, and focusing on progress instead of waiting for perfection.
 
-The project was designed as a practical example for students, showing that simple ideas can be transformed into real applications through planning, experimentation, and continuous learning.
+The main purpose of this project was to show my students that they can develop simple games and applications by learning step by step, solving problems, and gaining confidence through practice.
 
-The name **Funtomin** was created during brainstorming sessions with students while exploring the software development process. These discussions were part of a learning experience that introduced students to idea generation, project planning, and application design.
+The name **Funtomin** was created during brainstorming sessions with my students while learning the process of application development. The idea was to involve students not only in programming concepts but also in the creative stages of software design, including naming, visual design, and user experience.
 
-The name combines the words **"Fun"** and **"Minutes"**, reflecting the game's fast-paced, entertaining, and time-based pantomime gameplay.
+The name **Funtomin** comes from the combination of **"Fun"** and **"Minutes"**, representing the short, exciting, and enjoyable rounds of pantomime gameplay.
 
 ---
 
 ## Game Description
 
-Funtomin is a team-based pantomime game where players compete by acting out words and phrases while their teammates attempt to guess the correct answer before time runs out.
+Funtomin is a team-based pantomime game where players compete by acting out words and guessing them within a limited time.
 
-Players can create teams, select categories, choose challenge levels, and compete in a fun and engaging environment that encourages communication, creativity, and teamwork.
+Players can create teams, compete against each other, and enjoy a fun learning-oriented activity that encourages creativity, communication, and teamwork.
 
-The game includes multiple categories and difficulty levels, providing a variety of challenges suitable for different groups of players.
+The game includes different challenge categories and difficulty levels to provide a variety of experiences for players.
 
 ---
 
-## Educational Purpose
+## Development History
 
-This project was developed primarily as an educational tool.
+The first version of Funtomin was developed in **2023** as a learning project and a practical example for my students during programming lessons.
 
-Its purpose is to help students understand the complete process of software development, including:
+Since then, the project has continued to evolve. The new version includes:
 
-* Idea generation
-* Brainstorming
-* User interface design
-* Programming
-* Testing
-* Problem solving
-* Project completion
+* Improved performance
+* Better code organization
+* A cleaner program structure
+* New programming approaches and techniques
+* More efficient data management
 
-Funtomin demonstrates that meaningful software projects can begin with simple concepts and grow through learning and practice.
+During the development of the new version, I also introduced new programming concepts, such as using modules for managing shared game data, and learned new techniques through solving real development challenges.
 
 ---
 
 ## Design
 
-The visual identity of Funtomin was also developed as part of the educational process.
+The visual identity of Funtomin was also created as part of the learning process.
 
-The game's cover and DVD artwork were designed using a two-color style intended to create a cheerful and energetic appearance that reflects the fun nature of the game.
+The cover and DVD design were developed using a two-color style to create a simple, attractive, and joyful appearance that matches the game's purpose: providing fun and happiness for players.
 
 ---
 
 ## Features
 
 * 🎭 Pantomime-based gameplay
-* 👥 Team competition
-* ⏱️ Adjustable round timer
-* 🗂️ Multiple categories
-* 🎯 Different challenge levels
-* 🎵 Background music and sound effects
+* 👥 Team competition system
+* ⏱️ Time-based challenges
+* 🗂️ Multiple categories and difficulty levels
+* 🎵 Background music and game sounds
 * 🎲 Random word selection
-* 💾 Local database support
+* 💾 Local database for storing game content
 
 ---
 
 ## Technologies Used
 
-* **VB.NET**
-* **.NET Framework**
-* **Microsoft Access Database**
-* **Visual Studio**
+* Programming Language: **VB.NET**
+* Framework: **.NET Framework**
+* Database: **Microsoft Access**
+* Development Environment: **Visual Studio**
 
 ---
 
+## Educational Purpose
+
+This project was created mainly as a teaching example.
+
+The goal was not only to create a playable game but also to demonstrate the complete process of software development:
+
+* Generating ideas
+* Designing application concepts
+* Planning features
+* Developing the program
+* Improving code quality
+* Testing and debugging
+* Learning from mistakes
+
+I believe that practical projects help students understand that programming is a creative process where improvement comes through continuous learning.
+
+---
+
+# Installation
+
+To install the application:
+
+0. Download and install requirements like as Mircosoft Access DatabasEngine based on your system.
+1. Download the latest release.
+2. Run the installer.
+3. Follow the installation instructions.
+4. Launch **Funtomin**.
+5. In first run of application you need to input serial number and cd-key which are 'FUNTO1402' and '1402'.
+---
+
+
 ## Known Limitations
 
-As an educational project, Funtomin may contain bugs, limitations, or areas that could be improved.
+Although Funtomin has been improved significantly, it may still contain bugs or areas that can be enhanced.
 
-The project was created as a learning experience and should be viewed as an example of practical software development rather than a commercial product.
+Software development is a continuous learning process, and this project can be improved in the future using:
 
-Suggestions and constructive feedback are always welcome.
+* More advanced programming techniques
+* Better architecture patterns
+* Additional features
+* Further optimization
+
+Users are welcome to report issues and suggestions that can help improve the project.
 
 ---
 
 ## Disclaimer
 
-Funtomin is provided for educational and entertainment purposes.
+This project was developed for educational purposes. It was created as a learning example and may not represent a fully commercial-level application.
 
-The software is distributed as-is without any guarantees. Users are responsible for their own use of the application.
+Users should understand that software can contain unexpected issues, and they should use it at their own responsibility.
+
+---
+
+# Third-Party Assets and Licenses
+
+This project may include third-party resources, including but not limited to:
+
+- Fonts
+- Icons
+- Images
+- Audio resources
+- Other creative materials
+
+Every reasonable effort has been made to identify, document, and provide proper attribution for third-party resources.
+
+The licenses and attribution information for these resources are available in:
+
+```
+ATTRIBUTIONS.md
+```
+
+and related documentation files.
+
+Third-party resources remain the property of their respective owners and are subject to their original licenses.
 
 ---
 
@@ -115,7 +172,7 @@ Current Version:
 Release Period:
 
 ```
-2022 - 2023
+2025 - 2026
 ```
 
 ## License

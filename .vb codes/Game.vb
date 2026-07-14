@@ -7,32 +7,29 @@ Public Class Game
     Public sound As Integer = 0
     Public TeamScores As New List(Of Integer)
     Dim pfc As New PrivateFontCollection()
+    Dim rnd As New Random()
 
     Private Sub Game_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Icon = My.Resources.logo_ico
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
         Me.CenterToScreen()
-        Me.BackColor = Color.FromArgb(212, 224, 154)
 
+        Me.BackColor = Color.FromArgb(212, 224, 154)
 
         With Me
             .FormBorderStyle = Windows.Forms.FormBorderStyle.None
             .Region = New Region(RoundedRectangle(.ClientRectangle, 50))
         End With
 
-
         Fonttxt()
         Theme()
         Sizing()
         Locations()
-       
 
         ''Making a list for each team's score
         For i As Integer = 1 To My.Settings.Team
             TeamScores.Add(0)
         Next
-
-        
 
     End Sub
 
@@ -41,7 +38,7 @@ Public Class Game
         Label2.Font = New Font(pfc.Families(0), 40)
         Label3.Font = New Font(pfc.Families(0), 40)
         Label4.Font = New Font(pfc.Families(0), 40)
-        Label5.Font = New Font("Microsoft time new romans", 24)
+        Label5.Font = New Font("Microsoft time new romans", 14)
     End Sub
 
     Private Sub Theme()
@@ -49,7 +46,6 @@ Public Class Game
         Label3.ForeColor = Color.White
         Label4.ForeColor = Color.White
         Label5.ForeColor = Color.White
-
         Label2.BackColor = Color.FromArgb(183, 191, 121)
         Label3.BackColor = Color.FromArgb(183, 191, 121)
         Label4.BackColor = Color.FromArgb(183, 191, 121)
@@ -80,7 +76,6 @@ Public Class Game
     Private Sub Sizing()
         Label1.Width = Me.ClientSize.Width
         Label1.Height = Me.ClientSize.Height / 3
-
         Button1.Width = Me.ClientSize.Width / 7
         Button1.Height = Me.ClientSize.Width / 7
         Button2.Width = Me.ClientSize.Width / 7
@@ -102,11 +97,7 @@ Public Class Game
         Button4.Location = New Point(Button1.Location.X + 3 * Button1.ClientSize.Width, Button1.Location.Y)
         Button2.Location = New Point(Button1.Location.X + 9 * Button1.ClientSize.Width / 2, Button1.Location.Y)
 
-
     End Sub
-
-
-
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Timer1.Enabled = False
@@ -155,23 +146,24 @@ Public Class Game
         My.Settings.Team = 2
         My.Settings.Round = 3
         My.Settings.Time = 60
+        For i As Integer = 1 To My.Settings.Team
+            TeamScores.Add(0)
+        Next
         My.Settings.Save()
         Me.Close()
         HomePage.Show()
 
     End Sub
 
-
-    Public Sub pl()
-        My.Computer.Audio.Play(My.Resources.ResourceManager.GetObject("DesktopClockTicks"), AudioPlayMode.Background)
+    Public Sub pl(numm As Integer)
+        Dim musics As String = "m" & numm.ToString
+        My.Computer.Audio.Play(My.Resources.ResourceManager.GetObject(musics), AudioPlayMode.Background)
 
     End Sub
-    Private Sub st()
+
+    Public Sub st()
         My.Computer.Audio.Stop()
     End Sub
-
-
-
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If CInt(Label4.Text) > 0 Then
@@ -220,10 +212,7 @@ Public Class Game
             Label4.Text = 59
         End If
 
-
     End Sub
-
-
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         If sound = 0 Then
@@ -231,7 +220,8 @@ Public Class Game
             sound = 1
             Button3.BackgroundImage = My.Resources.mute2
         Else
-            pl()
+            st()
+            pl(rnd.Next(1, 5))
             sound = 0
             Button3.BackgroundImage = My.Resources.mute
         End If
@@ -242,9 +232,14 @@ Public Class Game
         If MsgBox("Do you want to give a yellow card to the team?", MsgBoxStyle.Question + MsgBoxStyle.DefaultButton1 + vbYesNo, "End") = 6 Then
             TeamScores(My.Settings.Turn - 1) = TeamScores(My.Settings.Turn - 1) - 1
             Me.BackColor = Color.FromArgb(212, 224, 154)
+            Label5.Text = ""
+            For i As Integer = 1 To My.Settings.Team
+                Label5.Text = Label5.Text & "Team " & i & "'s Score: " & TeamScores(i - 1) & " ** "
+
+            Next
+            Label5.Location = New Point(Me.ClientSize.Width / 2 - Label5.ClientSize.Width / 2, Me.ClientSize.Height - Label5.ClientSize.Height)
 
         End If
-
 
     End Sub
 
@@ -258,10 +253,6 @@ Public Class Game
         Return path
     End Function
 
-
-
-
-
     Private Sub Game_DoubleClick(sender As Object, e As EventArgs) Handles MyBase.DoubleClick
         Label5.Text = ""
         For i As Integer = 1 To My.Settings.Team
@@ -270,9 +261,6 @@ Public Class Game
         Next
         Label5.Location = New Point(Me.ClientSize.Width / 2 - Label5.ClientSize.Width / 2, Me.ClientSize.Height - Label5.ClientSize.Height)
 
-
     End Sub
 
-
-  
 End Class

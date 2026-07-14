@@ -1,10 +1,8 @@
 ﻿Imports System.Data.OleDb
 Imports System.Drawing.Text
 
-
 Public Class Subjects
     Dim pfc As New PrivateFontCollection()
-
 
     Private Sub Subjects_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Icon = My.Resources.logo_ico
@@ -12,19 +10,17 @@ Public Class Subjects
         Me.CenterToScreen()
         Me.BackColor = Color.FromArgb(112, 28, 28)
 
-
-       
         Fonttxt()
         Theme()
         Sizing()
         Locations()
-       
 
         MessageBox.Show("It's team " & My.Settings.Turn & " Turn")
 
     End Sub
+
     Private Sub Fonttxt()
-        '' Font 
+        '' Font
 
         pfc.AddFontFile(Application.StartupPath & "\" & "DastNevis.otf")
         Button1.Font = New Font(pfc.Families(0), 40)
@@ -83,65 +79,81 @@ Public Class Subjects
         Button6.Location = New Point(Button1.ClientSize.Width + Button2.ClientSize.Width, Button1.ClientSize.Height)
         Button7.Location = New Point(Button1.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
 
-
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-        My.Settings.Table = "List_Kids"
+        My.Settings.Table = "Kids"
         My.Settings.Save()
         Me.Close()
         disposer()
         Points.Show()
     End Sub
+
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        My.Settings.Table = "List_Objects"
+        My.Settings.Table = "Objects"
         My.Settings.Save()
         Me.Close()
         disposer()
         Points.Show()
     End Sub
+
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        My.Settings.Table = "List_Challenges"
+        My.Settings.Table = "Challenges"
         My.Settings.Save()
         Me.Close()
         disposer()
         Points.Show()
     End Sub
+
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        My.Settings.Table = "List_Jobs"
+        My.Settings.Table = "Jobs"
         My.Settings.Save()
         Me.Close()
         disposer()
         Points.Show()
 
     End Sub
+
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        My.Settings.Table = "List_Cities"
+        My.Settings.Table = "Cities"
         My.Settings.Save()
         Me.Close()
         disposer()
         Points.Show()
 
     End Sub
+
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        My.Settings.Table = "List_Proverbs"
+        My.Settings.Table = "Proverbs"
         My.Settings.Save()
         Me.Close()
         disposer()
         Points.Show()
     End Sub
-
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-       
-        Me.Close()
-        disposer()
-        HomePage.Show()
+        If MessageBox.Show("Do you want to go home?", "Alert", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = 6 Then
+
+            My.Settings.Turn = 1
+            My.Settings.Team = 2
+            My.Settings.Round = 3
+            My.Settings.Time = 60
+            For i As Integer = 1 To My.Settings.Team
+                Game.TeamScores.Add(0)
+            Next
+            My.Settings.Save()
+            Game.Close()
+            Me.Close()
+            disposer()
+            HomePage.Show()
+        End If
+        
     End Sub
 
     Public Sub disposer()
         pfc.Dispose()
 
     End Sub
+
 End Class
