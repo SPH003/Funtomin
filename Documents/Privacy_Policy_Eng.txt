@@ -1,0 +1,23 @@
+ Privacy Policy
+
+ Funtomin Privacy Policy
+
+Your privacy is important to us. Funtomin has been developed as an educational and local multiplayer game and is designed to operate entirely on your device.
+
+ Information Collection
+
+Funtomin does not collect, store, transmit, or share any personal information. The application does not require user registration, account creation, or the submission of personal data.
+
+ Local Data Storage
+
+Any game settings, scores, preferences, or other application data are stored locally on the user's device and are used solely to provide the intended functionality of the game.
+
+ Changes to This Policy
+
+This Privacy Policy may be updated in future versions of the application if new features or technologies are introduced. Any changes will be reflected in updated releases of the software.
+
+ Contact
+
+If you have questions regarding this Privacy Policy or the application itself, please refer to the project's official documentation or repository for further information.
+
+By using Funtomin, you acknowledge and accept the terms described in this Privacy Policy.

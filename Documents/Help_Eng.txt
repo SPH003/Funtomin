@@ -1,0 +1,19 @@
+﻿ How to Play
+
+Welcome to Funtomin!
+
+Getting started is simple. Before the game begins, players must configure the game settings by selecting:
+
+* The total number of teams
+* The number of rounds
+* The time limit for each round
+
+Once the game starts, Team One chooses a category and then selects a point value according to the team's confidence, experience, and skill level. The game offers six different categories and five point levels, allowing players to choose challenges that best match their abilities.
+
+During each round, the active team must act out the displayed word or phrase without speaking, while teammates try to guess the correct answer before time runs out. Teams earn points by successfully completing challenges and may continue competing through all selected rounds.
+
+To encourage fair play, a yellow card system is included. If a team violates the rules or behaves unfairly during a round, players may issue a yellow card to that team. Each yellow card results in a one-point penalty.
+
+The game also includes audio controls. Players can use the mute button at any time to turn the game sounds and music on or off according to their preference.
+
+Have fun, play fair, and enjoy the competition!
