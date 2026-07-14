@@ -5,13 +5,12 @@ Imports System.Runtime.InteropServices
 
 Public Class HomePage
 
-
-    Dim istag As Integer
+    Dim Egg As Integer
     Dim locb3 As Integer = 0
     Dim fun As Integer = 0
     Dim imghck As Integer = 0
-
     Dim music As String = "joker1"
+    Dim pfc As New PrivateFontCollection()
 
     Private Sub HomePage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -19,28 +18,48 @@ Public Class HomePage
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
         Me.CenterToScreen()
         Me.BackColor = Color.DimGray
+        
+
+        Fonttxt()
+        Theme()
+        Sizing()
+        Locations()
+        
+       
 
 
+        ' Displays a message to the player based on how many times they have visited the home page.
+        ' If the player chooses "Yes" in the Joker question, the Easter egg sequence will be executed.
+
+        My.Settings.batnum = My.Settings.batnum + 1
+        My.Settings.Save()
+
+        If My.Settings.batnum Mod 5 = 0 Then
+
+            Egg = MsgBox("Why So Serious?", vbYesNo, "?$?")
+
+        End If
 
 
-        '' Locating Items
+        If My.Settings.batnum = 16 Then
+            My.Settings.batnum = 0
+            My.Settings.Save()
+        End If
 
-        PictureBox1.Location = New Point(0, 0)
-        Button1.Location = New Point(782 - Button1.ClientSize.Width, 0)
-        Button2.Location = New Point(782 - Button2.ClientSize.Width, Button1.Location.Y + Button1.ClientSize.Height)
-        Button3.Location = New Point(782 - Button3.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
-        Button4.Location = New Point(782 - Button4.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
-
+    End Sub
 
 
+    Private Sub Fonttxt()
         '' Font and Color Setting
 
-        Dim pfc As New PrivateFontCollection()
         pfc.AddFontFile(Application.StartupPath & "\" & "DastNevis.otf")
         Button1.Font = New Font(pfc.Families(0), 40)
         Button2.Font = New Font(pfc.Families(0), 40)
         Button3.Font = New Font(pfc.Families(0), 40)
 
+    End Sub
+
+    Private Sub Theme()
         Button1.ForeColor = Color.White
         Button2.ForeColor = Color.White
         Button3.ForeColor = Color.White
@@ -57,43 +76,55 @@ Public Class HomePage
         Button3.FlatStyle = FlatStyle.Flat
         Button4.FlatStyle = FlatStyle.Flat
 
+    End Sub
 
-        If My.Settings.batnum Mod 3 = 0 Or My.Settings.batnum = 0 Then
-
-            istag = MsgBox("Why So Serious?", vbYesNo, "?$?")
-
-            My.Settings.batnum = My.Settings.batnum + 1
-
-        Else
-            My.Settings.batnum = My.Settings.batnum + 1
-
-        End If
-
-        If My.Settings.batnum = 10 Then
-            My.Settings.batnum = 0
-        End If
+    Private Sub Sizing()
+        PictureBox1.Width = 482
+        PictureBox1.Height = 605
+        Button1.Width = Me.ClientSize.Width - PictureBox1.ClientSize.Width
+        Button1.Height = Me.ClientSize.Height / 3
+        Button2.Width = Button1.ClientSize.Width
+        Button2.Height = Button1.ClientSize.Height
+        Button3.Width = Button1.ClientSize.Width
+        Button3.Height = Button1.ClientSize.Height
+        Button4.Width = Button1.ClientSize.Width
+        Button4.Height = Button1.ClientSize.Height
 
     End Sub
 
+    Private Sub Locations()
+        '' Locating Items
+        PictureBox1.Location = New Point(0, 0)
+        Button1.Location = New Point(Me.ClientSize.Width - Button1.ClientSize.Width, 0)
+        Button2.Location = New Point(Me.ClientSize.Width - Button2.ClientSize.Width, Button1.Location.Y + Button1.ClientSize.Height)
+        Button3.Location = New Point(Me.ClientSize.Width - Button3.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
+        Button4.Location = New Point(Me.ClientSize.Width - Button4.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
 
+        
+
+    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        disposer()
         Me.Close()
         Start.Show()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        disposer()
         Me.Close()
         Aboutus.Show()
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        disposer()
+        Application.Exit()
         Form1.Close()
     End Sub
 
-
+    ' Prepares an Easter egg for players by changing the location of btn3 and displaying btn4 instead.
     Private Sub Button3_MouseHover(sender As Object, e As EventArgs) Handles Button3.MouseHover
 
-        If istag = 6 Then
+        If Egg = 6 Then
 
             Select Case locb3
 
@@ -106,12 +137,13 @@ Public Class HomePage
                     Button3.Location = New Point(782 - Button3.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
                     locb3 = 0
             End Select
+
             fun = fun + 1
 
         End If
 
         If fun = 3 Then
-            istag = 0
+            Egg = 0
             fun = 0
             Button3.Enabled = False
             Button4.Visible = True
@@ -125,9 +157,13 @@ Public Class HomePage
 
 
 
+    ' When the player clicks on btn4, a sound effect is played.
+    ' The screen then briefly turns off and on while several humorous images are displayed,
+    ' suggesting that the player's computer is being hacked.
+    ' After the sequence repeats two or three times, everything returns to normal.
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        pl()
+        pl("batmann")
         Button3.Enabled = True
         Button4.Visible = False
         Button4.Enabled = False
@@ -146,16 +182,12 @@ Public Class HomePage
 
     <DllImport("user32.dll", SetLastError:=True)> _
     Private Shared Function SendMessage(ByVal hWnd As Integer, ByVal hMsg As Integer, ByVal wParam As Integer, ByVal lParam As Integer) As Integer
+
     End Function
 
 
-    Public Sub pl2(w As String)
+    Public Sub pl(w As String)
         My.Computer.Audio.Play(My.Resources.ResourceManager.GetObject(w), AudioPlayMode.Background)
-
-    End Sub
-
-    Public Sub pl()
-        My.Computer.Audio.Play(My.Resources.ResourceManager.GetObject("batmann"), AudioPlayMode.Background)
 
     End Sub
     Public Sub st()
@@ -163,6 +195,7 @@ Public Class HomePage
     End Sub
 
 
+    ' Changing visibility of labels which player by clicking on them can run the Easter egg
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
         Timer3.Enabled = False
         Label3.Visible = True
@@ -183,11 +216,11 @@ Public Class HomePage
     End Sub
 
 
-
+    ' Changing the program width and height and music and refreshing screen
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         Timer2.Enabled = True
         Timer1.Interval = 10000
-        pl2(music)
+        pl(music)
 
         If imghck = 0 Then
             Me.Width = Screen.PrimaryScreen.Bounds.Width
@@ -223,11 +256,11 @@ Public Class HomePage
 
     End Sub
 
+    ' Changing everything to its normal state
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
         SendMessage(Me.Handle.ToInt32(), WM_SYSCOMMAND, SC_MONITORPOWER, 2)
         Timer1.Enabled = False
         Timer3.Enabled = False
-
 
         st()
         PictureBox2.Visible = False
@@ -235,32 +268,20 @@ Public Class HomePage
         Button2.Enabled = True
         Button3.Enabled = True
         Me.Width = 800
-        Me.Height = 605
-        Me.Width = 800
         Me.Height = 600
-
-        Button1.Width = 320
-        Button1.Height = 200
-        Button2.Width = 320
-        Button2.Height = 200
-        Button3.Width = 320
-        Button3.Height = 220
-        Button4.Width = 320
-        Button4.Height = 200
-
-
         Me.CenterToScreen()
-        PictureBox1.Location = New Point(0, 0)
-        Button1.Location = New Point(800 - Button1.ClientSize.Width, 0)
-        Button2.Location = New Point(800 - Button2.ClientSize.Width, Button1.Location.Y + Button1.ClientSize.Height)
-        Button3.Location = New Point(800 - Button3.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
-        Button4.Location = New Point(800 - Button4.ClientSize.Width, Button2.Location.Y + Button2.ClientSize.Height)
 
+        Sizing()
+
+
+
+        Locations()
 
         Timer2.Enabled = False
 
     End Sub
 
+    ' Making lbl1 blinking
     Private Sub Timer3_Tick(sender As Object, e As EventArgs) Handles Timer3.Tick
 
         If Label1.Visible = True Then
@@ -270,6 +291,9 @@ Public Class HomePage
         End If
     End Sub
 
+    Public Sub disposer()
+        pfc.Dispose()
 
+    End Sub
 
 End Class

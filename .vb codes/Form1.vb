@@ -3,14 +3,6 @@
 Public Class Form1
     Public serial As String
     Public cdkey As String
-    Dim a As Integer = 0
-    Dim xs As Integer = 0
-
-    Public connchallenge As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0.; " & "Data Source=" & Application.StartupPath & "\" & "Challengedata.mdb")
-    Public connjob As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0.; " & "Data Source=" & Application.StartupPath & "\" & "Jobdata.mdb")
-    Public connkids As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0.; " & "Data Source=" & Application.StartupPath & "\" & "Kidsdata.mdb")
-    Public connobjects As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0.; " & "Data Source=" & Application.StartupPath & "\" & "Objectsdata.mdb")
-    Public connzarblmsl As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0.; " & "Data Source=" & Application.StartupPath & "\" & "Zarblmsldata.mdb")
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -19,20 +11,8 @@ Public Class Form1
 
         Me.Icon = My.Resources.logo_ico
         Me.BackColor = Color.Black
-
-
         Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-       
-
-
-
         Me.CenterToScreen()
-
-        load_data_Challenge()
-        load_data_job()
-        load_data_kids()
-        load_data_objects()
-        load_data_zarblmsl()
 
 
 
@@ -55,26 +35,16 @@ Public Class Form1
 
 
             If serial = "exit" Or cdkey = "exit" Or cdkey = "" Then
-                My.Settings.first_run = True
+
                 MsgBox("... Try Later...")
                 Me.Close()
 
             ElseIf serial = "FUNTO1402" And cdkey = "1402" Then
-                My.Settings.first_run = False
-                Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-              
-                Me.CenterToScreen()
                 pl()
                 Timer1.Enabled = True
 
-
-
-                ''''
-
-
-
             Else
-                My.Settings.first_run = True
+
                 MsgBox("... Try Later...")
                 Me.Close()
 
@@ -83,19 +53,12 @@ Public Class Form1
 
         Else
             Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
-
             Me.CenterToScreen()
             pl()
             Timer1.Enabled = True
 
-            '''''
-
-
         End If
 
-
-
-        ''  ProgressBar1.BackColor = Color.Black
 
 
 
@@ -107,64 +70,54 @@ Public Class Form1
     End Sub
 
 
-    Public Sub load_data_Challenge()
-        Dim da As New OleDbDataAdapter("Select Id,Challengeword from Challenge", connchallenge)
-        Dim dt As New DataTable
-        da.Fill(dt)
-        ListBoxchallenge.DataSource = dt
-        ListBoxchallenge.DisplayMember = "Challengeword"
-        ListBoxchallenge.ValueMember = "Id"
-        ListBoxchallenge.ClearSelected()
-    End Sub
-
-    Public Sub load_data_job()
-        Dim da As New OleDbDataAdapter("Select Id,Jobs from Tabjob", connjob)
-        Dim dt As New DataTable
-        da.Fill(dt)
-        ListBoxjob.DataSource = dt
-        ListBoxjob.DisplayMember = "Jobs"
-        ListBoxjob.ValueMember = "Id"
-        ListBoxjob.ClearSelected()
-    End Sub
-
-    Public Sub load_data_kids()
-        Dim da As New OleDbDataAdapter("Select Id,Kidword from Kids", connkids)
-        Dim dt As New DataTable
-        da.Fill(dt)
-        ListBoxkids.DataSource = dt
-        ListBoxkids.DisplayMember = "Kidword"
-        ListBoxkids.ValueMember = "Id"
-        ListBoxkids.ClearSelected()
-    End Sub
-
-    Public Sub load_data_objects()
-        Dim da As New OleDbDataAdapter("Select Id,Objects from Objects", connobjects)
-        Dim dt As New DataTable
-        da.Fill(dt)
-        ListBoxobjects.DataSource = dt
-        ListBoxobjects.DisplayMember = "Objects"
-        ListBoxobjects.ValueMember = "Id"
-        ListBoxobjects.ClearSelected()
-    End Sub
-
-    Public Sub load_data_zarblmsl()
-        Dim da As New OleDbDataAdapter("Select Id,Zarblmsl from Zarblmsl", connzarblmsl)
-        Dim dt As New DataTable
-        da.Fill(dt)
-        ListBoxzarblmsl.DataSource = dt
-        ListBoxzarblmsl.DisplayMember = "Zarblmsl"
-        ListBoxzarblmsl.ValueMember = "Id"
-        ListBoxzarblmsl.ClearSelected()
-    End Sub
-
-
-
 
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        Form2.Show()
-        Me.Hide()
+
+        PictureBox2.Visible = False
+        Me.FormBorderStyle = Windows.Forms.FormBorderStyle.None
+        Me.Height = Screen.PrimaryScreen.Bounds.Height
+        Me.Width = Screen.PrimaryScreen.Bounds.Width
+        Me.CenterToScreen()
+
+        PictureBox1.Width = Me.ClientSize.Width
+        PictureBox1.Height = Me.ClientSize.Height
+
+        ProgressBar1.Width = ClientSize.Width
+        ProgressBar1.Height = 30
+
+
+        Label1.Parent = PictureBox1
+        Label2.Parent = PictureBox1
+
+        Label2.ForeColor = Color.White
+        Label2.BackColor = Color.Transparent
+
+
+        Label1.ForeColor = Color.White
+        Label1.BackColor = Color.Transparent
+
+        ProgressBar1.ForeColor = Color.DimGray
+
+       
+
+        Label1.RightToLeft = Windows.Forms.RightToLeft.Yes
+        Label2.RightToLeft = Windows.Forms.RightToLeft.Yes
+        PictureBox1.Visible = True
+        ProgressBar1.Visible = True
+        Label1.Visible = True
+        Label2.Visible = True
+
+        ProgressBar1.Location = New Point((ClientSize.Width - ProgressBar1.ClientSize.Width) / 2, (ClientSize.Height - ProgressBar1.ClientSize.Height))
+        PictureBox1.Location = New Point((ClientSize.Width - PictureBox1.Width) / 2, (ClientSize.Height - PictureBox1.Height) / 2)
+        Label1.Location = New Point(Me.ClientSize.Width - Label1.ClientSize.Width, ProgressBar1.Location.Y - Label1.ClientSize.Height)
+        Label2.Location = New Point(Label1.Location.X - Label2.ClientSize.Width, Label1.Location.Y)
+
+
+
         Timer1.Enabled = False
+        Timer2.Enabled = True
+
 
     End Sub
 
@@ -178,10 +131,66 @@ Public Class Form1
 
 
 
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
 
-  
-  
-   
+      
+        ProgressBar1.BringToFront()
+        Label2.BringToFront()
+        Label1.BringToFront()
+        Label2.Text = ProgressBar1.Value & "%"
+        Label2.Location = New Point(Label1.Location.X - Label2.ClientSize.Width, Label1.Location.Y)
+
+        ProgressBar1.Value += 1
+
+        If ProgressBar1.Value = 20 Then
+
+            Label1.Text = "از برنامه‌نویسان جوان حمایت کنیم"
+            Label1.Location = New Point((Me.ClientSize.Width - Label1.ClientSize.Width), ProgressBar1.Location.Y - Label1.ClientSize.Height)
+
+        ElseIf ProgressBar1.Value = 40 Then
+
+            Label1.Text = "در حال آماده سازی برنامه... "
+            Label1.Location = New Point((Me.ClientSize.Width - Label1.ClientSize.Width), ProgressBar1.Location.Y - Label1.ClientSize.Height)
+
+        ElseIf ProgressBar1.Value = 101 Then
+
+            Label1.Text = "آماده‌سازی با موفقیت انجام گرفت "
+            Label1.Location = New Point((Me.ClientSize.Width - Label1.ClientSize.Width), ProgressBar1.Location.Y - Label1.ClientSize.Height)
+
+        ElseIf ProgressBar1.Value = 102 Then
+
+            If My.Settings.first_run = True Then
+                My.Settings.first_run = False
+                My.Settings.Save()
+                st()
+                Timer2.Enabled = False
+                Timer1.Dispose()
+                Timer2.Dispose()
+                Me.Hide()
+                HomePage.Show()
+
+
+            Else
+                st()
+                Timer2.Enabled = False
+                Timer1.Dispose()
+                Timer2.Dispose()
+                Me.Hide()
+                HomePage.Show()
+
+
+
+            End If
+        End If
+
+       
+
+
+
+
+
+    End Sub
+
 
 
 End Class
